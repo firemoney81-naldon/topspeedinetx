@@ -1,23 +1,528 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <style>
+    /* 1. 기본 스타일 */
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      color: #333;
+      background: #f4f7f9; /* 부드러운 배경색 */
+    }
+    header, nav, section, footer {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+      background: #ffffff;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* 부드러운 그림자 */
+    }
+    header {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      background: linear-gradient(135deg, #e0f2f7, #c1e4ee); /* 그라데이션 헤더 */
+      color: #000;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #0077c2; /* 핵심 키워드 강조색 */
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    header p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* 2. 네비게이션 스타일 */
+    nav {
+      background: #0077c2; /* 네이비 블루 */
+      text-align: center;
+      padding: 15px 0;
+      border-radius: 0;
+      margin-bottom: 30px;
+      box-shadow: none;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 20px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    /* 3. 섹션 및 카드 스타일 */
+    h2 {
+      font-size: 1.8rem;
+      color: #0077c2;
+      border-bottom: 3px solid #0077c2;
+      padding-bottom: 10px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      text-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    }
+    h3 {
+      font-size: 1.4rem;
+      color: #2c3e50;
+      margin-top: 20px;
+      border-bottom: 1px dashed #eee;
+      padding-bottom: 5px;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .service-card {
+      background: #fdfdfd;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 119, 194, 0.2);
+    }
+    .service-card h4 {
+      font-size: 1.2rem;
+      color: #0077c2;
+      margin-top: 0;
+    }
+
+    /* 4. CTA 버튼 스타일 */
+    .cta {
+      display: inline-block;
+      background-color: #00c292; /* 강조색 - 그린 */
+      color: white;
+      padding: 18px 40px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+      box-shadow: 0 4px 8px rgba(0, 194, 146, 0.3);
+    }
+    .cta:hover {
+      background-color: #00a87f;
+      box-shadow: 0 6px 12px rgba(0, 194, 146, 0.4);
+    }
+
+    /* 5. 폼 스타일 */
+    form label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    form input[type="text"], form input[type="email"], form input[type="tel"], form select {
+      width: calc(100% - 20px);
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    form button[type="submit"] {
+      background-color: #0077c2;
+      color: white;
+      padding: 15px;
+      margin-top: 25px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: background-color 0.3s;
+    }
+    form button[type="submit"]:hover {
+      background-color: #005a92;
+    }
+
+    /* 6. 테이블 및 목록 스타일 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f7f7f7;
+      font-weight: 700;
+      color: #333;
+    }
+    ul, ol {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+
+    /* 7. FAQ 스타일 */
+    dl.faq dt {
+      font-weight: 700;
+      margin-top: 20px;
+      cursor: pointer;
+      color: #0077c2;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+    dl.faq dd {
+      margin-left: 0;
+      margin-top: 10px;
+      padding: 10px;
+      background: #fcfcfc;
+      border-radius: 4px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* 8. 이미지 스타일 */
+    .img-container {
+      margin: 20px 0;
+      text-align: center;
+    }
+    .img-container img {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* 9. SEO 및 추가 정보 영역 */
+    .seo-text {
+      font-size: 0.95rem;
+      color: #666;
+      background: #fafafa;
+      padding: 20px;
+      border-radius: 6px;
+      border-left: 4px solid #00c292;
+      margin-top: 30px;
+    }
+  </style>
+
+  <!-- JSON-LD Schema for WebPage and OfferCatalog -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://www.yourdomain.kr/internet-speed-comparison"
+    },
+    "headline":"인터넷속도비교: SK, KT, LG 통신사별 요금, 사은품, 혜택 총정리",
+    "description":"2026년 최신 인터넷속도비교 정보! SKT, KT, LG U+ 100M, 500M, 1G 요금제 가격, 사은품, 현금지원 혜택을 전문가가 비교 분석하여 가장 저렴한 곳을 추천합니다.",
+    "publisher":{
+      "@type":"Organization",
+      "name":"인터넷속도비교 전문 플랫폼",
+      "logo":{
+        "@type":"ImageObject",
+        "url":"https://www.yourdomain.kr/images/logo.png"
+      }
+    },
+    "author":{
+      "@type":"Person",
+      "name":"AI 분석팀"
+    },
+    "datePublished":"2026-04-18",
+    "dateModified":"2026-04-18",
+    "offers":{
+      "@type":"OfferCatalog",
+      "name":"인터넷 가입 상품",
+      "itemListElement":[
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"SKT 인터넷 가입"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"KT 인터넷 가입"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"LG U+ 인터넷 가입"}}
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+
+<header id="상단">
+  <h1>인터넷속도비교: SK, KT, LG 통신사별 요금, 사은품, 혜택 총정리</h1>
+  <p>2026년 최신 정보! 통신 3사 <strong>인터넷속도비교</strong>를 통해 나에게 맞는 최적의 요금제와 <strong>최대 현금지원</strong>을 받으세요.</p>
+  <a href="#무료견적신청" class="cta">최대 사은품 혜택 견적 받기</a>
+</header>
+
+<nav>
+  <a href="#속도측정">속도 측정 방법</a>
+  <a href="#요금제비교">요금제 비교 분석</a>
+  <a href="#사은품혜택">사은품 및 현금지원</a>
+  <a href="#가입절차">가입 절차</a>
+  <a href="#faq">FAQ</a>
+  <a href="#견적문의">무료 견적 신청</a>
+</nav>
+
+<section id="속도측정" aria-label="인터넷 속도 측정 및 분석">
+  <h2>우리집 인터넷 속도, 왜 느릴까요? 측정 및 분석 방법</h2>
+  <div class="img-container">
+    <img src="https://images.pexels.com/photos/159304/network-cable-lan-internet-159304.jpeg?auto=compress&cs=tinysrgb&h=627&w=940" alt="인터넷 케이블과 컴퓨터" title="인터넷 속도 측정">
+  </div>
+  <p>인터넷속도비교를 시작하기에 앞서, 현재 사용 중인 인터넷의 속도를 정확히 아는 것이 중요합니다. 단순히 '느리다'는 느낌이 아니라, 실제 다운로드 속도(Download Speed), 업로드 속도(Upload Speed), 그리고 지연 시간(Latency)을 확인해야 합니다. 특히 게임을 즐기거나 실시간 스트리밍(YouTube, Twitch)을 자주 이용하는 사용자라면 지연 시간(Ping)이 매우 중요합니다.</p>
+  <p>인터넷 속도 측정은 한국지능정보사회진흥원(NIA)의 속도 측정 사이트나, Naver, Google 검색을 통해 제공되는 간이 측정 도구를 활용할 수 있습니다. 하지만 정확한 측정을 위해서는 유선 연결 상태에서 측정하는 것이 필수적입니다. 무선 와이파이 환경에서는 공유기의 성능이나 주변 전파 간섭으로 인해 실제 통신사에서 제공하는 속도보다 훨씬 낮게 측정될 수 있습니다.</p>
+
+  <h3>인터넷 속도를 느리게 만드는 주범들</h3>
+  <ul>
+    <li><strong>Wi-Fi 공유기 성능:</strong> 오래된 공유기나 저가형 공유기는 500Mbps 이상의 속도를 감당하지 못할 수 있습니다.</li>
+    <li><strong>네트워크 케이블:</strong> CAT5e 이하의 오래된 LAN 케이블은 1Gbps 속도를 지원하지 못합니다. 최소 CAT6 이상을 사용해야 합니다.</li>
+    <li><strong>PC 사양:</strong> 컴퓨터의 랜카드나 CPU 성능이 낮으면 최대 속도를 뽑아내지 못하는 경우도 있습니다.</li>
+    <li><strong>서버 부하:</strong> 접속하려는 웹사이트나 게임 서버의 상태에 따라 속도가 저하될 수 있습니다.</li>
+  </ul>
+</section>
+
+<section id="요금제비교" aria-label="통신사별 요금제 상세 비교">
+  <h2>통신 3사 요금제 상세 비교: 100M, 500M, 1G 무엇을 골라야 할까?</h2>
+  <p>인터넷속도비교 시 가장 중요한 것은 요금제 선택입니다. SKT, KT, LG U+는 100Mbps(광랜), 500Mbps(기가라이트), 1Gbps(기가인터넷) 요금제를 주력으로 판매하고 있습니다. 각 요금제별 평균 가격과 추천 대상, 장단점을 비교하여 <strong>가장 저렴한 곳</strong>을 찾아드립니다.</p>
+
+  <h3>1. SKT SK브로드밴드 요금제 장단점 및 특징</h3>
+  <div class="service-card">
+    <h4>SKT 인터넷 장점:</h4>
+    <ul>
+      <li><strong>결합 할인 강점:</strong> SKT 휴대폰 사용자가 결합(온가족플랜, 온가족프리) 시 할인폭이 매우 큽니다.</li>
+      <li><strong>AI 기반 서비스:</strong> AI 스피커 NUGU와 연동한 스마트홈 서비스가 강점입니다.</li>
+      <li><strong>안정적인 커버리지:</strong> 대도시뿐만 아니라 전국적으로 준수한 커버리지를 제공합니다.</li>
+    </ul>
+    <h4>SKT 인터넷 단점:</h4>
+    <ul>
+      <li>KT에 비해 인터넷 품질 측면에서 일부 지역의 사용자 후기에서는 불만족이 보고되기도 합니다.</li>
+    </ul>
+  </div>
+
+  <h3>2. KT Olleh 요금제 장단점 및 특징</h3>
+  <div class="service-card">
+    <h4>KT 인터넷 장점:</h4>
+    <ul>
+      <li><strong>가장 넓은 커버리지:</strong> 전국 90% 이상의 지역에 광케이블 인프라가 구축되어 있습니다. (산간벽지 제외)</li>
+      <li><strong>안정적인 품질:</strong> 인터넷 품질 측면에서 가장 안정적이라는 평가가 많습니다.</li>
+      <li><strong>다양한 결합 상품:</strong> 휴대폰 결합 외에도 TV, 넷플릭스 등 다양한 콘텐츠 결합 상품이 많습니다.</li>
+    </ul>
+    <h4>KT 인터넷 단점:</h4>
+    <ul>
+      <li>다른 통신사에 비해 기본 요금이 상대적으로 비싸게 느껴질 수 있습니다.</li>
+    </ul>
+  </div>
+
+  <h3>3. LG U+ 요금제 장단점 및 특징</h3>
+  <div class="service-card">
+    <h4>LG U+ 인터넷 장점:</h4>
+    <ul>
+      <li><strong>파격적인 사은품:</strong> 신규 가입 시 현금지원, 사은품 규모가 가장 큰 통신사로 알려져 있습니다.</li>
+      <li><strong>모바일 결합 혜택:</strong> LG U+ 휴대폰 사용자가 결합 시 높은 할인율을 제공합니다.</li>
+      <li><strong>IPTV 콘텐츠:</strong> 넷플릭스, 디즈니+ 등 OTT 콘텐츠 접근성이 좋습니다.</li>
+    </ul>
+    <h4>LG U+ 인터넷 단점:</h4>
+    <ul>
+      <li>상대적으로 커버리지가 좁고, 일부 지역에서는 안정성이 떨어진다는 후기가 있습니다.</li>
+    </ul>
+  </div>
+
+  <h3>2026년 통신사별 인터넷 요금제 평균 가격 비교표 (3년 약정 기준)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>통신사</th>
+        <th>100Mbps (광랜)</th>
+        <th>500Mbps (기가 라이트)</th>
+        <th>1Gbps (기가 인터넷)</th>
+        <th>추천 결합 대상</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>SKT</td>
+        <td>월 22,000원</td>
+        <td>월 33,000원</td>
+        <td>월 38,500원</td>
+        <td>SKT 휴대폰 사용자</td>
+      </tr>
+      <tr>
+        <td>KT</td>
+        <td>월 22,000원</td>
+        <td>월 33,000원</td>
+        <td>월 38,500원</td>
+        <td>KT 휴대폰 사용자, 안정성 중시</td>
+      </tr>
+      <tr>
+        <td>LG U+</td>
+        <td>월 22,000원</td>
+        <td>월 33,000원</td>
+        <td>월 38,500원</td>
+        <td>LG U+ 휴대폰 사용자, 최대 사은품 선호</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="seo-text">※ 위 가격은 부가세 포함 금액이며, 3년 약정 기준의 평균 금액입니다. TV 결합 및 휴대폰 결합 여부에 따라 실제 체감하는 <strong>인터넷 비용</strong>은 크게 달라질 수 있습니다.</p>
+</section>
+
+<section id="사은품혜택" aria-label="사은품 및 현금지원 혜택">
+  <h2>신규 가입 혜택: 사은품, 현금지원, 상품권 총정리</h2>
+  <div class="img-container">
+    <img src="https://images.pexels.com/photos/4192080/pexels-photo-4192080.jpeg?auto=compress&cs=tinysrgb&h=627&w=940" alt="현금과 상품권" title="인터넷 가입 사은품">
+  </div>
+  <p>인터넷속도비교 만큼이나 중요한 것이 바로 <strong>사은품 혜택</strong>입니다. 통신사 본사보다 인터넷 가입 전문점을 통해 가입할 경우 훨씬 많은 현금지원과 사은품을 받을 수 있습니다. 이는 통신사 본사에서 가입자를 유치하기 위해 지급하는 수수료를 전문 업체가 고객에게 돌려주는 방식입니다.</p>
+
+  <h3>사은품 현금지원 규모 차이점 분석</h3>
+  <p><strong>통신사 본사 (SKT, KT, LG U+):</strong> 보통 상품권(백화점 상품권, 신세계 상품권) 위주로 제공하며, 현금 지원 금액이 매우 적거나 없습니다. 주로 TV 셋톱박스 할인 등 부가 서비스 할인을 강조합니다.</p>
+  <p><strong>전문 가입 업체 (저희와 같은 대리점):</strong> 통신사 본사보다 훨씬 많은 <strong>현금지원</strong>을 제공합니다. 이는 신규 고객 유치 경쟁이 치열한 <strong>인터넷시장</strong>의 특성 때문입니다. <strong>신규 가입 혜택</strong>을 최대로 받기 위해서는 전문 업체를 통해 <strong>비교 가입</strong>하는 것이 유리합니다.</p>
+
+  <h3>인터넷 가입 시 사은품을 최대로 받는 방법</h3>
+  <p><strong>첫째, 결합 상품을 활용하세요.</strong> TV나 휴대폰과 결합하면 사은품 금액이 올라가거나 추가 혜택이 제공됩니다. <strong>SKT 결합</strong>, <strong>KT 결합</strong>, <strong>LG U+ 결합</strong> 중 나에게 맞는 것을 선택해야 합니다.</p>
+  <p><strong>둘째, 3년 약정을 선택하세요.</strong> 1년 약정이나 2년 약정보다는 3년 약정 시 사은품 규모가 가장 큽니다. 장기적으로 사용한다면 3년 약정이 <strong>가장 저렴한 방법</strong>입니다.</p>
+  <p><strong>셋째, 전문 업체에서 견적을 비교하세요.</strong> 저희는 전국 지역별(서울, 부산, 대구, 인천, 광주, 대전, 울산, 세종, 경기, 수원, 용인, 고양, 창원, 성남, 청주, 전주, 천안, 김해, 포항, 진주, 순천, 원주, 춘천, 강릉, 제주)의 <strong>인터넷 가입 순위</strong>와 <strong>사은품 순위</strong>를 파악하고 있습니다.</p>
+</section>
+
+<section id="가입절차" aria-label="인터넷 가입 절차">
+  <h2>인터넷 가입 절차 및 주의사항</h2>
+  <ol>
+    <li><a href="#견적문의"><strong>1단계: 무료 견적 신청 및 상담 진행</strong></a><br>원하는 요금제와 거주 지역(예: 경기도, 인천광역시, 대전광역시, 충남 아산시, 경북 구미시, 경남 창원시, 부산 해운대구 등)을 알려주시면 전문가가 <strong>인터넷 요금제 가격비교</strong>를 해드립니다.</li>
+    <li><strong>2단계: 통신사 및 상품 선택</strong><br>상담을 통해 SK, KT, LG 중 나에게 맞는 통신사를 선택하고, 100M, 500M, 1G 중 필요한 속도를 결정합니다. <strong>신규 가입</strong>이 <strong>재약정</strong>보다 혜택이 더 많습니다.</li>
+    <li><strong>3단계: 가입 서류 작성 및 설치 일정 조율</strong><br>가입 신청서를 작성하고, 통신사에서 직접 설치 기사가 방문할 일정을 잡습니다.</li>
+    <li><strong>4단계: 설치 완료 및 사은품 지급</strong><br>설치 완료 후 3일 이내에 약속된 현금지원 및 사은품을 지급받습니다. (이때 지급되는 <strong>현금지원금</strong>은 통신사 정책에 따라 다를 수 있습니다.)</li>
+  </ol>
+</section>
+
+<section id="종합비교" aria-label="인터넷속도비교 종합 분석">
+  <h2>인터넷속도비교 종합 분석: KT, SKT, LG U+ 장단점 및 추천 순위</h2>
+  <div class="img-container">
+    <img src="https://images.pexels.com/photos/3571939/pexels-photo-3571939.jpeg?auto=compress&cs=tinysrgb&h=627&w=940" alt="데이터 분석 그래프" title="인터넷 속도 분석">
+  </div>
+  <p>결론적으로 <strong>인터넷속도비교</strong>를 통해 나에게 맞는 통신사를 선택하는 것은 단순히 <strong>가격</strong>만으로 결정할 수 없습니다. 각 통신사의 장점과 단점, 그리고 <strong>신규 가입 혜택</strong>을 종합적으로 고려해야 합니다. 아래는 통신사별 특징을 한눈에 볼 수 있도록 정리한 내용입니다.</p>
+
+  <h3>통신사별 최종 장단점 요약</h3>
+  <div class="grid-container">
+    <div class="service-card">
+      <h4>KT (케이티)</h4>
+      <p><strong>장점:</strong> 전국 커버리지 및 안정성 최고, 장애 발생률이 낮아 <strong>전문적인 인터넷 사용</strong>에 적합. 특히 <strong>해외망 속도</strong>가 우수하여 해외 서비스(예: 해외 게임 서버, Netflix) 이용자에게 추천.</p>
+      <p><strong>단점:</strong> 다른 통신사 대비 사은품 금액이 상대적으로 낮을 수 있으며, 요금 할인이 까다로운 편.</p>
+    </div>
+    <div class="service-card">
+      <h4>SKT (에스케이텔레콤)</h4>
+      <p><strong>장점:</strong> 가족 결합 할인 혜택이 가장 강력. SKT 휴대폰 사용자가 많다면 <strong>SKT 인터넷</strong>을 선택하는 것이 <strong>가장 저렴한 방법</strong>일 수 있음.</p>
+      <p><strong>단점:</strong> 일부 지역에서 속도 안정성이 KT 대비 미흡하다는 <strong>내돈내산 후기</strong>가 존재.</p>
+    </div>
+    <div class="service-card">
+      <h4>LG U+ (엘지유플러스)</h4>
+      <p><strong>장점:</strong> <strong>신규 가입 사은품</strong> 규모가 가장 크며, 넷플릭스 등 OTT 결합 상품이 다양함. <strong>저렴한 곳</strong>을 찾는 신규 가입자에게 추천.</p>
+      <p><strong>단점:</strong> 타 통신사 대비 커버리지가 좁고, 일부 지역에서는 <strong>인터넷 속도</strong> 편차가 발생할 수 있음.</p>
+    </div>
+  </div>
+
+  <h3>인터넷 가입 유형별 추천 순위</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>가입 유형</th>
+        <th>추천 통신사</th>
+        <th>이유</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>속도 안정성 최우선</strong></td>
+        <td>KT > SKT > LG U+</td>
+        <td>KT는 전국 단위 인프라가 가장 우수합니다.</td>
+      </tr>
+      <tr>
+        <td><strong>요금 할인 최우선 (SKT 휴대폰 보유)</strong></td>
+        <td>SKT > KT/LG U+</td>
+        <td>SKT 온가족 할인 혜택이 압도적입니다.</td>
+      </tr>
+      <tr>
+        <td><strong>사은품 현금지원 최우선</strong></td>
+        <td>LG U+ > SKT > KT</td>
+        <td>LG U+가 보통 <strong>현금 지원금</strong>을 가장 많이 제공합니다.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="견적문의" aria-label="무료 견적 신청 및 상담">
+  <h2>무료 견적 신청 및 상담 받기</h2>
+  <div class="img-container">
+    <img src="https://images.pexels.com/photos/5926394/pexels-photo-5926394.jpeg?auto=compress&cs=tinysrgb&h=627&w=940" alt="상담 전화" title="인터넷 가입 상담">
+  </div>
+  <p>저희는 <strong>SKT, KT, LG U+ 3사 비교 견적</strong>을 통해 고객님에게 <strong>가장 저렴한 인터넷</strong>과 <strong>최대 현금지원</strong>을 제공하는 전문 업체입니다. 아래 폼을 작성해주시면 <strong>실시간 인터넷 가격비교</strong>를 통해 나에게 맞는 최적의 요금제와 <strong>신규 가입 혜택</strong>을 상세히 안내해 드립니다.</p>
+  <p class="seo-text"><strong>전문 업체</strong>를 통한 가입은 <strong>통신사 본사 가입</strong>보다 <strong>더 많은 사은품</strong>을 받을 수 있다는 <strong>장점</strong>이 있습니다. <strong>신규 가입</strong>을 원하는 분, <strong>약정 만료</strong>로 <strong>인터넷을 변경</strong>하려는 분 모두 환영합니다.</p>
+  <form action="/submit-estimate" method="POST" aria-describedby="견적폼설명">
+    <label for="name">이름</label>
+    <input type="text" id="name" name="name" placeholder="이름" required />
+
+    <label for="phone">연락처</label>
+    <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" pattern="[0-9]{3}-?[0-9]{4}-?[0-9]{4}" required />
+
+    <label for="location">설치 예정 지역 (시/구/동)</label>
+    <input type="text" id="location" name="location" placeholder="예: 서울특별시 강남구 역삼동" required />
+
+    <label for="speed_type">희망 인터넷 속도</label>
+    <select id="speed_type" name="speed_type" required>
+      <option value="">선택하세요</option>
+      <option value="100m">100Mbps (광랜)</option>
+      <option value="500m">500Mbps (기가 라이트)</option>
+      <option value="1g">1Gbps (기가 인터넷)</option>
+    </select>
+
+    <label for="bundle_type">TV, 휴대폰 결합 여부</label>
+    <select id="bundle_type" name="bundle_type" required>
+      <option value="">선택하세요</option>
+      <option value="tv">TV 결합 희망</option>
+      <option value="mobile">휴대폰 결합 희망</option>
+      <option value="both">TV+휴대폰 모두 결합 희망</option>
+      <option value="none">인터넷 단독 가입</option>
+    </select>
+
+    <button type="submit" class="cta">무료 견적 요청하기</button>
+  </form>
+</section>
+
+<section id="faq" aria-label="자주 묻는 질문 FAQ">
+  <h2>자주 묻는 질문 (FAQ)</h2>
+  <dl class="faq">
+    <dt>Q1: 인터넷 속도비교를 할 때 <strong>500Mbps</strong>와 <strong>1Gbps</strong>의 차이가 큰가요?</dt>
+    <dd>A: 일반적인 웹 서핑, OTT 시청, 간단한 온라인 게임에는 <strong>500Mbps</strong>로도 충분합니다. 하지만 4K 영상 스트리밍을 여러 명이 동시에 이용하거나, 대용량 파일을 자주 다운로드하는 사용자(게이머, 개발자 등)에게는 <strong>1Gbps</strong>가 체감 속도에서 큰 차이를 보입니다. 특히 <strong>AI 기술</strong> 개발을 위해 대규모 데이터를 다루는 전문가라면 1Gbps 이상을 추천합니다.</dd>
+
+    <dt>Q2: <strong>인터넷 가입 업체</strong>마다 사은품 금액이 다른 이유는 무엇인가요?</dt>
+    <dd>A: 통신사 본사에서 대리점에게 지급하는 수수료가 다르기 때문입니다. 저희와 같은 전문 대리점은 수수료의 일부를 고객에게 <strong>현금지원</strong>으로 돌려드립니다. <strong>사은품 순위</strong>가 높은 업체를 찾는 것이 <strong>가장 저렴한 곳</strong>을 찾는 방법입니다.</dd>
+
+    <dt>Q3: 약정이 끝났는데 <strong>재약정</strong>과 <strong>신규 가입</strong> 중 어떤 것이 유리한가요?</dt>
+    <dd>A: 특별한 사유(가족 결합 할인 금액이 매우 크거나)가 없다면 <strong>신규 가입</strong>이 <strong>재약정</strong>보다 유리합니다. 재약정 시에는 <strong>사은품 혜택</strong>이나 <strong>현금지원금</strong>이 신규 가입 대비 매우 적습니다. 통신사를 옮기면서 <strong>신규 가입 혜택</strong>을 받는 것이 <strong>가장 저렴한 방법</strong>입니다.</dd>
+
+    <dt>Q4: <strong>SKT, KT, LG U+</strong> 인터넷 품질 차이가 실제로 있나요?</dt>
+    <dd>A: <strong>인터넷 속도비교</strong> 결과, 대부분의 대도시 지역에서는 큰 차이가 없습니다. 하지만 <strong>KT</strong>가 <strong>전국 커버리지</strong>와 안정성 면에서 가장 우수하다고 평가받으며, <strong>SKT</strong>와 <strong>LG U+</strong>는 특정 지역에서는 품질 편차가 발생할 수 있습니다. <strong>AI 에이전트</strong>를 통해 실시간 품질 모니터링이 발전하면서 이러한 격차는 줄어들고 있습니다.</dd>
+
+    <dt>Q5: <strong>인터넷 가입 시 주의사항</strong>은 무엇인가요?</dt>
+    <dd>A: <strong>과장된 사은품 금액</strong>을 제시하거나, <strong>계약 전 현금지급</strong>을 약속하는 업체는 피해야 합니다. 사은품은 설치 완료 후 지급되는 것이 일반적이며, <strong>디시인사이드(디시)</strong>나 <strong>내돈내산 후기</strong> 커뮤니티에서 업체 <strong>순위</strong>와 신뢰도를 확인하는 것이 좋습니다.</dd>
+  </dl>
+</section>
+
+<section id="footer-links" aria-label="추가 정보 및 외부 링크">
+  <h2>참고 자료 및 관련 정보</h2>
+  <p>더 심층적인 정보가 필요하다면 아래 공신력 있는 외부 사이트를 참고해주세요.</p>
+  <ul>
+    <li><a href="https://www.nia.or.kr/" target="_blank">한국지능정보사회진흥원 (NIA)</a> - 인터넷 품질 측정 및 통계 자료 제공.</li>
+    <li><a href="https://namu.wiki/w/%EC%9D%B8%ED%84%B0%EB%84%B7" target="_blank">나무위키 - 인터넷 항목</a> - 인터넷 기술 및 역사, 통신사 정보 상세 설명.</li>
+    <li><a href="https://www.kcc.go.kr/" target="_blank">방송통신위원회 (KCC)</a> - 통신 서비스 관련 정책 및 규제 정보.</li>
+    <li><a href="https://www.kdata.or.kr/" target="_blank">한국데이터산업진흥원</a> - 데이터 및 통신 산업 동향.</li>
+    <li><a href="https://www.moit.go.kr/" target="_blank">산업통상자원부</a> - ICT 산업 및 기술 개발 관련 자료.</li>
+  </ul>
+</section>
+  
